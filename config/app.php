@@ -115,7 +115,6 @@ return [
 		 */
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
-		'Illuminate\Bus\BusServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
 		'Illuminate\Routing\ControllerServiceProvider',
@@ -135,13 +134,13 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		Illuminate\Broadcasting\BroadcastServiceProvider::class,
 
 		/*
 		 * Application Service Providers...
 		 */
 		'Confomo\Providers\AppServiceProvider',
 		'Confomo\Providers\BusServiceProvider',
-		'Confomo\Providers\ConfigServiceProvider',
 		'Confomo\Providers\EventServiceProvider',
 		'Confomo\Providers\RouteServiceProvider',
 		'Confomo\Providers\TwitterServiceProvider',
