@@ -42,7 +42,7 @@ class GrabTwitterProfilesCommand extends Command
     {
         $this->info('Looking for any Friends with no pulled Twitter profile...');
 
-        foreach (\Confomo\Entities\Friend::where('twitter_id', 0)->get() as $friend) {
+        foreach (\Confomo\Entities\Friend::whereNull('twitter_id')->get() as $friend) {
             \Queue::push(
                 'Confomo\Twitter\SyncProfile',
                 array(

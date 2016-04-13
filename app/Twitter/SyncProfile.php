@@ -117,7 +117,7 @@ class SyncProfile
         $profile = $this->profile->firstOrCreate(['twitter_id' => $result->id]);
 
         $profile->name = $result->name;
-        $profile->screen_name = $result->screen_name;
+        $profile->screen_name = $screenName;
         $profile->location = $result->location;
         $profile->description = $result->description;
         $profile->url = $result->url;
