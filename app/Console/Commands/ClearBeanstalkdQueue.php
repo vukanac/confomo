@@ -3,38 +3,49 @@
 namespace Confomo\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Queue\Connectors\BeanstalkdConnector;
-use Pheanstalk\Pheanstalk;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 
 class ClearBeanstalkdQueue extends Command
 {
     /**
-     * The name and signature of the console command.
+     * The console command name.
      *
      * @var string
      */
-    protected $signature = 'queue:beanstalkd:clear {queue?}';
+    protected $name = 'queue:beanstalkd:clear';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Clear Beanstalkd queue.';
+    protected $description = 'Clear a Beanstalkd queue, by deleting all pending jobs.';
 
     /**
-     * @param BeanstalkdConnector $connector
+     * Defines the arguments.
+     *
+     * @return array
      */
-    public function handle(BeanstalkdConnector $connector)
+    public function getArguments()
     {
-        $config = config('queue.connections.beanstalkd');
+        return array(
+            array('queue', InputArgument::OPTIONAL, 'The name of the queue to clear.'),
+        );
+    }
 
-        /** @type Pheanstalk $pheanstalk */
-        $pheanstalk = $connector->connect($config)->getPheanstalk();
+    /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function fire()
+    {
+        $queue = ($this->argument('queue')) ? $this->argument('queue') : Config::get('queue.connections.beanstalkd.queue');
 
-        $queue = $this->argument('queue') ?: $config['queue'];
-        $this->info("Clearing queue: {$queue}");
+        $this->info(sprintf('Clearing queue: %s', $queue));
 
+        $pheanstalk = Queue::getPheanstalk();
         $pheanstalk->useTube($queue);
         $pheanstalk->watch($queue);
 
