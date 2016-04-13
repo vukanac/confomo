@@ -3,8 +3,10 @@
 namespace Confomo\Console\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Queue;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class ClearBeanstalkdQueue extends Command
 {
