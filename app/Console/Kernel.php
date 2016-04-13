@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel {
 	protected $commands = [
 		'Confomo\Console\Commands\Inspire',
 		'Confomo\Console\Commands\GrabTwitterProfilesCommand',
+		'Confomo\Console\Commands\ClearBeanstalkdQueue',
 	];
 
 	/**
