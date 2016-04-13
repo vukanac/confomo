@@ -11,7 +11,8 @@ class Friend extends Eloquent
         'twitter',
         'type',
         'notes',
-        'met'
+        'met',
+        'conference_id'
     ];
 
     /**

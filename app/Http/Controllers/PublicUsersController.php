@@ -49,7 +49,8 @@ class PublicUsersController extends BaseController
 
         $friend = new Friend([
             'twitter' => $_POST['twitter'],
-            'type' => $_POST['type'] . '_suggested'
+            'type' => $_POST['type'] . '_suggested',
+            'conference_id' => $conference_id,
         ]);
         $friend->user_id = $user->id;
         $friend->save();
